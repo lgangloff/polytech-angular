@@ -1,0 +1,13 @@
+<div>
+    <h2 [title]="center.name">{{center.name | uppercase}}</h2>
+    <div>{{center.address}} <span>{{center.postalCode}} {{center.city}}</span></div>
+</div>
+
+<div>
+    <button (click)="clearName()">Clear Name</button>
+</div>
+
+<div>
+    <label for="name">Nom du centre:</label>
+    <input id="name" [(ngModel)]="center.name" />
+</div>
