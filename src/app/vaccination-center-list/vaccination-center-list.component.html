@@ -13,6 +13,7 @@
     </li>
 </ul>
 
-<div *ngIf="selected">
-    Centre sélectionné: {{selected.name}}
+<div *ngIf="selected" class="detail">
+    <h2>{{selected.name}}</h2>
+    <div>{{selected.address}} <span>{{selected.postalCode}} {{selected.city}}</span></div>
 </div>
