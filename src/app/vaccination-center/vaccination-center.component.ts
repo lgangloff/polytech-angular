@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { VaccinationCenter } from '../vaccination-center';
 
 @Component({
@@ -8,19 +8,18 @@ import { VaccinationCenter } from '../vaccination-center';
 })
 export class VaccinationCenterComponent implements OnInit {
 
-  center: VaccinationCenter = {
-    id:1, 
-    name:"Hôpital Central", 
-    address: "Rue Lionnois", 
-    postalCode: "54000", 
-    city: "Nancy"
-  }   
+  @Input() center?: VaccinationCenter;
+  @Output() deleted = new EventEmitter<VaccinationCenter>();
 
   constructor() { }
 
   ngOnInit(): void { }
 
+  delete(){
+    this.deleted.emit(this.center);
+  }
+
   clearName(){
-    this.center.name = "";
+    this.center!.name = "";
   }
 }

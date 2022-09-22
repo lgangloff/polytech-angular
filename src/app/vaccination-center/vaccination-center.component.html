@@ -1,13 +1,19 @@
-<div>
-    <h2 [title]="center.name">{{center.name | uppercase}}</h2>
-    <div>{{center.address}} <span>{{center.postalCode}} {{center.city}}</span></div>
-</div>
+<div class="detail" *ngIf="center">
 
-<div>
-    <button (click)="clearName()">Clear Name</button>
-</div>
+    <div>
+        <h2 [title]="center.name">{{center.name | uppercase}}</h2>
+        <div>{{center.address}} <span>{{center.postalCode}} {{center.city}}</span></div>
+        <div>Ouvert depuis le {{center.openingDate | date:'dd/MM/Y'}}</div>
+    </div>
+        
+    <div>
+        <label for="name">Nom du centre:</label>
+        <input id="name" [(ngModel)]="center.name" />
+    </div>
 
-<div>
-    <label for="name">Nom du centre:</label>
-    <input id="name" [(ngModel)]="center.name" />
+    <div>
+        <button (click)="clearName()">Clear Name</button>
+        <button (click)="delete()">Supprimer</button>
+    </div>
+    
 </div>

@@ -13,10 +13,7 @@
     </li>
 </ul>
 
-<div *ngIf="selected" class="detail">
-    <h2>{{selected.name | uppercase}}</h2>
-    <div>{{selected.address}} 
-        <span>{{selected.postalCode}} {{selected.city}}</span>
-    </div>
-    <div>Ouvert depuis le {{selected.openingDate | date:'dd/MM/Y'}}</div>
-</div>
+<app-vaccination-center 
+    [center]="selected"
+    (deleted)="onDeleted($event)">  
+</app-vaccination-center>

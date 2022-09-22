@@ -19,6 +19,10 @@ export class VaccinationCenterListComponent implements OnInit {
       
   }
 
+  onDeleted(center: VaccinationCenter){
+    delete this.selected;
+    this.centers.splice(this.centers.indexOf(center), 1);
+  }
   isSpecialCenter(center: VaccinationCenter){
     return center.city == "Nancy";
   }
