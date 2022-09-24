@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CENTERS } from '../mock-vaccination-center';
 import { VaccinationCenter } from '../vaccination-center';
+import { VaccinationService } from '../vaccination.service';
 
 @Component({
   selector: 'app-vaccination-center-list',
@@ -9,14 +10,13 @@ import { VaccinationCenter } from '../vaccination-center';
 })
 export class VaccinationCenterListComponent implements OnInit {
 
-  centers: VaccinationCenter[] = CENTERS;
-
+  centers!: VaccinationCenter[];
   selected?: VaccinationCenter;
 
-  constructor() { }
+  constructor(private service: VaccinationService) { }
 
   ngOnInit(): void {
-      
+    this.centers = this.service.getAllVaccinationCenter();
   }
 
   onDeleted(center: VaccinationCenter){
