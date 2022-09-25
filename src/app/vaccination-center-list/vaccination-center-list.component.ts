@@ -16,7 +16,9 @@ export class VaccinationCenterListComponent implements OnInit {
   constructor(private service: VaccinationService) { }
 
   ngOnInit(): void {
-    this.centers = this.service.getAllVaccinationCenter();
+    this.service.getAllVaccinationCenter().subscribe(result=>{
+      this.centers = result;
+    });
   }
 
   onDeleted(center: VaccinationCenter){

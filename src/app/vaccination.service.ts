@@ -1,26 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CENTERS } from './mock-vaccination-center';
+import { Observable, tap } from 'rxjs';
 import { VaccinationCenter } from './vaccination-center';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VaccinationService {
+  constructor(private httpClient: HttpClient) { }
 
-  constructor() { }
-
-  getAllVaccinationCenter() : VaccinationCenter[]{
-    return CENTERS;
-  }
-
-  getVaccinationCenterById(id: number): VaccinationCenter | undefined {
-    return this.getAllVaccinationCenter().find(other=>other.id==id);
-  }
-  
-  deleteVaccinationCenter(center: VaccinationCenter) {
-    const index = CENTERS.indexOf(center, 0);
-    if (index > -1) {
-      CENTERS.splice(index, 1);
-    }
+  getAllVaccinationCenter(city?: string) : Observable<VaccinationCenter[]>{
+    return this.httpClient.get<VaccinationCenter[]>("api/public/centers");
   }
 }
