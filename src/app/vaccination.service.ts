@@ -13,4 +13,14 @@ export class VaccinationService {
     return CENTERS;
   }
 
+  getVaccinationCenterById(id: number): VaccinationCenter | undefined {
+    return this.getAllVaccinationCenter().find(other=>other.id==id);
+  }
+  
+  deleteVaccinationCenter(center: VaccinationCenter) {
+    const index = CENTERS.indexOf(center, 0);
+    if (index > -1) {
+      CENTERS.splice(index, 1);
+    }
+  }
 }

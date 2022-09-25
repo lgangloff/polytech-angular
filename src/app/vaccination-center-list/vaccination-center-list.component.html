@@ -1,19 +1,8 @@
 <h2>Liste des centres de vaccination</h2>
 <ul>
-    <li *ngFor="let aCenter of centers" 
-        [ngClass]="selected==aCenter ? 'selected' : ''">
-
-        <button 
-            [ngStyle]="{'font-weight' : isSpecialCenter(aCenter) ? 'bold' : 'normal'}"
-            (click)="selectCenter(aCenter)">
-
+    <li *ngFor="let aCenter of centers">
+        <a routerLink="/centers/detail/{{aCenter.id}}">
             {{aCenter.name}}
-
-        </button>
+        </a>
     </li>
 </ul>
-
-<app-vaccination-center 
-    [center]="selected"
-    (deleted)="onDeleted($event)">  
-</app-vaccination-center>

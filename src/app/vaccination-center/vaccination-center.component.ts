@@ -1,5 +1,8 @@
+import { Location } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { VaccinationCenter } from '../vaccination-center';
+import { VaccinationService } from '../vaccination.service';
 
 @Component({
   selector: 'app-vaccination-center',
@@ -8,15 +11,23 @@ import { VaccinationCenter } from '../vaccination-center';
 })
 export class VaccinationCenterComponent implements OnInit {
 
-  @Input() center?: VaccinationCenter;
-  @Output() deleted = new EventEmitter<VaccinationCenter>();
+  center?: VaccinationCenter;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute, 
+    private service: VaccinationService,    
+    private location: Location) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.center = this.service.getVaccinationCenterById(id);
+  }
 
   delete(){
-    this.deleted.emit(this.center);
+    if (this.center){
+      this.service.deleteVaccinationCenter(this.center);
+      this.location.back();
+    }
   }
 
   clearName(){
